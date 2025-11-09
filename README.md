@@ -66,15 +66,6 @@ public/
 
 The project uses Tailwind CSS v4 (via the `@tailwindcss/postcss` plugin) and the Geist sans/mono fonts from Vercel. Global styles live in `app/globals.css`. Adjust the Tailwind configuration in `postcss.config.mjs` or add utility classes directly within your components.
 
-## Deployment
-
-For production hosting you can:
-
-- Deploy to [Vercel](https://vercel.com/) for a fully managed Next.js experience.
-- Build and self-host by running `npm run build` followed by `npm run start` behind your preferred reverse proxy.
-
-Ensure that the production environment has access to the Crash Compass API and any required runtime configuration.
-
 ## Contributing
 
 1. Create a feature branch.
