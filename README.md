@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Crash Compass Web
+
+Crash Compass Web is the front-end for the Crash Compass project. It is a Next.js 15 application that renders dashboards and navigation for the economic indicators served by the Crash Compass API. The UI is designed to surface themed groupings of Federal Reserve Economic Data (FRED) series—such as labor, consumers, and housing—and will evolve alongside the API.
+
+## Features
+
+- Global navigation that mirrors the Crash Compass economic themes (Labor Market, Consumers, Financial Conditions, Production, Housing).
+- Responsive layout scaffolded with Tailwind CSS and the Geist font family.
+- Ready-to-integrate charting powered by [`lightweight-charts`](https://github.com/tradingview/lightweight-charts) for plotting time-series data returned by the API.
+- Configured Next.js 15 app router structure with shared layout, header component, and static assets.
+
+## Prerequisites
+
+- Node.js 18.18+ (or any version supported by Next.js 15)
+- npm 9+ (bundled with the recommended Node.js release)
+- Access to the Crash Compass API deployment for live data (optional for local UI development)
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+   The app will be available at [http://localhost:3000](http://localhost:3000). The dev server uses Turbopack for fast refresh by default.
+
+3. **Open the project**
+   Navigate to `http://localhost:3000` in your browser. Edit files under `app/` (for example, `app/page.tsx`) to see live updates.
+
+## Connecting to the API
+
+The front-end expects data from the Crash Compass API (FastAPI service documented in the backend repository). During local development you can:
+
+- Run the API locally (see the backend README for setup) and configure your data-fetching hooks or requests to target that host.
+- Stub or mock API responses while designing components if the backend is unavailable.
+
+When deploying, ensure the web app is configured to call the correct API base URL (for example, via environment variables or Next.js runtime configuration as you introduce data fetching).
+
+## Available Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # Start the Next.js dev server with Turbopack
+npm run build   # Build the production bundle
+npm run start   # Launch the production server (after build)
+npm run lint    # Run ESLint over the project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx          # Global layout with shared fonts, metadata, and header
+  page.tsx            # Landing page shell
+  components/
+    Header.jsx        # Navigation bar
+public/
+  CCFav.svg, CCLogo.svg, ...  # Branding assets
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Styling & Fonts
 
-## Learn More
+The project uses Tailwind CSS v4 (via the `@tailwindcss/postcss` plugin) and the Geist sans/mono fonts from Vercel. Global styles live in `app/globals.css`. Adjust the Tailwind configuration in `postcss.config.mjs` or add utility classes directly within your components.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For production hosting you can:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Deploy to [Vercel](https://vercel.com/) for a fully managed Next.js experience.
+- Build and self-host by running `npm run build` followed by `npm run start` behind your preferred reverse proxy.
 
-## Deploy on Vercel
+Ensure that the production environment has access to the Crash Compass API and any required runtime configuration.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a feature branch.
+2. Implement your changes and ensure the UI builds and linting passes.
+3. Submit a pull request describing your changes and any relevant screenshots.
+
+## License
+
+This project is proprietary and intended for internal use. Contact the maintainers for licensing details.
